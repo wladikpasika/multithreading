@@ -4,15 +4,13 @@ services:
       context: .
     expose:
       - "3001-3017" # Expose a range of ports
-      # Use a range to cover up to a high number of CPU cores
+
   nginx:
     build:
       context: ./nginx
     volumes:
-      - generated_data:/usr/src/app/nginx/generated
+      - ./nginx/generated:/usr/src/app/nginx/generated
     ports:
       - "80:80"
     depends_on:
       - app
-volumes:
-  generated_data:
